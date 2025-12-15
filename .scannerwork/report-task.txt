@@ -2,5 +2,5 @@ projectKey=labs-angular
 serverUrl=http://localhost:9000
 serverVersion=25.11.0.114957
 dashboardUrl=http://localhost:9000/dashboard?id=labs-angular
-ceTaskId=0303503d-97cb-4252-a82e-071cd4b83d16
-ceTaskUrl=http://localhost:9000/api/ce/task?id=0303503d-97cb-4252-a82e-071cd4b83d16
+ceTaskId=4e32f84e-673a-4995-9e3e-7ffce23afbf9
+ceTaskUrl=http://localhost:9000/api/ce/task?id=4e32f84e-673a-4995-9e3e-7ffce23afbf9
