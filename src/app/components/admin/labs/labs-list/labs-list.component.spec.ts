@@ -44,10 +44,8 @@ describe('LabsListComponent', () => {
     fixture.detectChanges(); // ngOnInit
   });
 
-  // =====================================================
   // Inicialización
-  // =====================================================
-
+  
   it('debería crear el componente', () => {
     expect(componente).toBeTruthy();
   });
@@ -69,10 +67,8 @@ describe('LabsListComponent', () => {
     expect(componente.loading).toBeFalse();
   });
 
-  // =====================================================
   // Eliminar
-  // =====================================================
-
+  
   it('no debería hacer nada si eliminar recibe id undefined', () => {
     componente.eliminar(undefined);
 

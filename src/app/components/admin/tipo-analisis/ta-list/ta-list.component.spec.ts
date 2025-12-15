@@ -22,6 +22,14 @@ describe('TaListComponent', () => {
       Promise.resolve({ isConfirmed: true } as any)
     );
 
+    /*
+    beforeEach crea mocks del TipoAnalisisService
+    con métodos espías, espía Swal.fire
+    para devolver confirmación, configura TestBed
+    con el componente TaListComponent y proporciona
+    los servicios mock, preparando el ambiente de prueba aislado
+    */
+
     await TestBed.configureTestingModule({
       imports: [TaListComponent],
       providers: [

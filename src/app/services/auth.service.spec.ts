@@ -26,16 +26,12 @@ describe('AuthService', () => {
     service = TestBed.inject(AuthService);
   });
 
-  // --------------------------------------------------
   // creación del servicio
-  // --------------------------------------------------
   it('debería crearse el servicio', () => {
     expect(service).toBeTruthy();
   });
 
-  // --------------------------------------------------
   // login exitoso ADMIN
-  // --------------------------------------------------
   it('debería hacer login correctamente como ADMIN', () => {
 
     const resultado = service.login('admin', '1234');
@@ -57,9 +53,7 @@ describe('AuthService', () => {
     expect(localStorage.getItem('isLoggedIn')).toBe('true');
   });
 
-  // --------------------------------------------------
   // login fallido
-  // --------------------------------------------------
   it('debería fallar el login con credenciales incorrectas', () => {
 
     const resultado = service.login('admin', 'xxxx');
@@ -71,9 +65,7 @@ describe('AuthService', () => {
     expect(routerSpy.navigate).not.toHaveBeenCalled();
   });
 
-  // --------------------------------------------------
   // logout
-  // --------------------------------------------------
   it('debería cerrar sesión correctamente', () => {
 
     // primero hago login
@@ -92,9 +84,7 @@ describe('AuthService', () => {
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/login']);
   });
 
-  // --------------------------------------------------
   // getters de usuario
-  // --------------------------------------------------
   it('debería retornar datos del usuario logueado', () => {
 
     service.login('usuario', '5678');
@@ -104,9 +94,7 @@ describe('AuthService', () => {
     expect(service.getUserEmail()).toBe('usuario@duocuc.cl');
   });
 
-  // --------------------------------------------------
   // roles
-  // --------------------------------------------------
   it('debería identificar correctamente rol USUARIO', () => {
 
     service.login('usuario', '5678');

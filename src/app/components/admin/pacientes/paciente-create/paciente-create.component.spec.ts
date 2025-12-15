@@ -9,7 +9,7 @@ import { PacienteService } from '../../../../services/paciente.service';
  * Este test se realiza para verificar que el componente de creación de pacientes
  * inicializa correctamente su estado, valida los campos obligatorios y ejecuta
  * las acciones esperadas al crear, limpiar o cancelar el formulario, aislando
- * la lógica del componente mediante el uso de servicios simulados.
+ * la lógica del componente mediante el uso de servicios simulados
  */
 
 describe('PacienteCreateComponent', () => {

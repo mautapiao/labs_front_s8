@@ -29,16 +29,12 @@ describe('TipoAnalisisService', () => {
     httpMock.verify();
   });
 
-  // ===================================================
-  // TEST 1 el servicio existe
-  // ===================================================
+  // el servicio existe
   it('debería crearse el servicio', () => {
     expect(service).toBeTruthy();
   });
 
-  // ===================================================
-  // TEST 2 getAll devuelve la lista desde _embedded
-  // ===================================================
+  // getAll devuelve la lista desde _embedded
   it('debería obtener la lista de tipos de análisis', () => {
 
     // simulo la respuesta del backend
@@ -70,9 +66,7 @@ describe('TipoAnalisisService', () => {
     req.flush(mockResponse);
   });
 
-  // ===================================================
-  // TEST 3 getById hace GET con el id correcto
-  // ===================================================
+  // getById hace GET con el id correcto
   it('debería obtener un tipo de análisis por id', () => {
 
     const mockTipo: TipoAnalisis = {

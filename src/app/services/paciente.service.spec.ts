@@ -15,7 +15,7 @@ describe('PacienteService', () => {
 
   const apiUrl = `${environment.apiBaseUrl}/pacientes`;
 
-  // mock que respeta EXACTAMENTE el modelo
+  // mock que respeta  el modelo
   const mockPaciente: PacienteModel = {
     id: 1,
     email: 'juan.perez@mail.com',
@@ -42,19 +42,15 @@ describe('PacienteService', () => {
     httpMock.verify();
   });
 
-  // --------------------------------------------------
   // creación del servicio
-  // --------------------------------------------------
   it('debería crearse el servicio', () => {
     expect(service).toBeTruthy();
   });
 
-  // --------------------------------------------------
   // getAll
-  // --------------------------------------------------
   it('debería obtener la lista de pacientes', () => {
 
-    // simulo la respuesta tipo HAL del backend
+    // simulo la respuesta del backend
     const mockResponse = {
       _embedded: {
         pacienteList: [mockPaciente]
@@ -77,9 +73,7 @@ describe('PacienteService', () => {
     req.flush(mockResponse);
   });
 
-  // --------------------------------------------------
   // getById
-  // --------------------------------------------------
   it('debería obtener un paciente por id', () => {
 
     service.getById(1).subscribe(paciente => {
@@ -92,9 +86,7 @@ describe('PacienteService', () => {
     req.flush(mockPaciente);
   });
 
-  // --------------------------------------------------
   // create
-  // --------------------------------------------------
   it('debería crear un paciente', () => {
 
     const nuevoPaciente: Omit<PacienteModel, 'id'> = {
@@ -108,7 +100,7 @@ describe('PacienteService', () => {
     };
 
     service.create(nuevoPaciente).subscribe(paciente => {
-      // yo espero que el backend me devuelva el id
+      // espero que el backend me devuelva el id
       expect(paciente.id).toBe(2);
       expect(paciente.email).toBe('ana@mail.com');
     });
@@ -120,9 +112,7 @@ describe('PacienteService', () => {
     req.flush({ ...nuevoPaciente, id: 2 });
   });
 
-  // --------------------------------------------------
   // update
-  // --------------------------------------------------
   it('debería actualizar un paciente', () => {
 
     const cambios = {
@@ -140,9 +130,7 @@ describe('PacienteService', () => {
     req.flush({ ...mockPaciente, ...cambios });
   });
 
-  // --------------------------------------------------
   // delete
-  // --------------------------------------------------
   it('debería eliminar un paciente', () => {
 
     service.delete(1).subscribe(response => {

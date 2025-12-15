@@ -41,7 +41,7 @@ describe('UsuarioListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         UsuarioListComponent,
-        RouterTestingModule   // ✅ CLAVE
+        RouterTestingModule   
       ],
       providers: [
         { provide: UsuarioService, useValue: usuarioServiceMock }
@@ -74,12 +74,19 @@ describe('UsuarioListComponent', () => {
     expect(component.error).toBe('No se pudieron cargar los registros.');
   });
 
+  /*
+  fakeAsync permite controlar el tiempo en pruebas asincrónicas,
+   y tick() avanza ese tiempo simulado para resolver promesas
+    pendientes como Swal.fire,  tick() resuelve la alerta para luego
+      verificar que el usuario fue eliminado del array
+  */
+
   it('debería eliminar el usuario del arreglo al confirmar', fakeAsync(() => {
 
     component.usuarios = [...USUARIOS_MOCK];
 
     component.eliminar(1);
-    tick(); // resuelve SweetAlert
+    tick(); // resuelve SweetAlert o casi en los test queda un mensje esperando ¿?
 
     expect(usuarioServiceMock.delete).toHaveBeenCalledWith(1);
     expect(component.usuarios.length).toBe(0);

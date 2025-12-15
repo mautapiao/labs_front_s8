@@ -20,6 +20,14 @@ describe('TaEditComponent', () => {
       Promise.resolve({ isConfirmed: true } as any)
     );
 
+    /*
+    TestBed.configureTestingModule configura el módulo de prueba: 
+    importa el componente TaEditComponent y proporciona servicios mock 
+    (ipoAnalisisService, Router, ActivatedRoute)
+     para que el componente use versiones falsas en lugar de las reales,
+     permitiendo un test aislado y controlado.
+    */
+
     await TestBed.configureTestingModule({
       imports: [TaEditComponent],
       providers: [
@@ -58,7 +66,7 @@ describe('TaEditComponent', () => {
       fixture.detectChanges();
 
       setTimeout(() => {
-        // Debo tener los datos cargados
+        // tener los datos cargados
         expect(componente.tipoAnalisis).toEqual(tipoMock);
         expect(componente.cargando).toBeFalsy();
         done();
@@ -343,10 +351,10 @@ describe('TaEditComponent', () => {
 
   describe('cancelar - Volver al listado', () => {
     it('debo navegar al listado cuando cancelo', () => {
-      // Presiono cancelar
+      // cancelar
       componente.cancelar();
 
-      // Debe navegar
+      // navegar
       expect(router.navigate).toHaveBeenCalledWith(['/tipo-analisis']);
     });
   });

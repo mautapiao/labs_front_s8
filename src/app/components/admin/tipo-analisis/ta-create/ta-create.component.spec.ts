@@ -60,37 +60,37 @@ describe('TaCreateComponent', () => {
 
   describe('validar - Validación del formulario', () => {
     it('debo rechazar cuando el código está vacío', () => {
-      // Dejo el código vacío y nombre lleno
+      // el código vacío y nombre lleno
       componente.tipoAnalisis.codigo = '';
       componente.tipoAnalisis.nombre = 'Hemograma';
       
       const resultado = componente.validar();
       
-      // Debe retornar falso y crear error
+      // retornar falso y crear error
       expect(resultado).toBeFalsy();
       expect(componente.errores['codigo']).toBeTruthy();
     });
 
     it('debo rechazar cuando el nombre está vacío', () => {
-      // Dejo el nombre vacío pero código lleno
+      // nombre vacío pero código lleno
       componente.tipoAnalisis.codigo = 'TA01';
       componente.tipoAnalisis.nombre = '';
       
       const resultado = componente.validar();
       
-      // Debe retornar falso y crear error
+      // retornar falso y crear error
       expect(resultado).toBeFalsy();
       expect(componente.errores['nombre']).toBeTruthy();
     });
 
     it('debo rechazar cuando ambos campos están vacíos', () => {
-      // Dejo ambos campos vacíos
+      // campos vacíos
       componente.tipoAnalisis.codigo = '';
       componente.tipoAnalisis.nombre = '';
       
       const resultado = componente.validar();
       
-      // Debe retornar falso y tener dos errores
+      // retornar falso y tener dos errores
       expect(resultado).toBeFalsy();
       expect(componente.errores['codigo']).toBeTruthy();
       expect(componente.errores['nombre']).toBeTruthy();
@@ -103,7 +103,7 @@ describe('TaCreateComponent', () => {
       
       const resultado = componente.validar();
       
-      // Debe fallar aunque técnicamente tenga caracteres
+      // falla aunque técnicamente tenga caracteres
       expect(resultado).toBeFalsy();
       expect(componente.errores['codigo']).toBeTruthy();
     });
@@ -276,10 +276,10 @@ describe('TaCreateComponent', () => {
 
   describe('cancelar - Volver al listado', () => {
     it('debo navegar al listado cuando cancelo', () => {
-      // Presiono cancelar
+      //  cancelar
       componente.cancelar();
       
-      // Debe ir al listado
+      //ir al listado
       expect(router.navigate).toHaveBeenCalledWith(['/tipo-analisis']);
     });
   });

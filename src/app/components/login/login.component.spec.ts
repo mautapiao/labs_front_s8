@@ -22,7 +22,7 @@ describe('LoginComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         LoginComponent,
-        RouterTestingModule   // ✅ necesario por RouterLink
+        RouterTestingModule   // RouterLink
       ],
       providers: [
         { provide: AuthService, useValue: authServiceMock }

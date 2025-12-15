@@ -26,6 +26,12 @@ describe('NavbarComponent', () => {
       Promise.resolve({ isConfirmed: true } as any)
     );
 
+    /*
+    beforeEach configura el ambiente de prueba creando mocks del AuthService
+     espiando Swal.fire y el Router, y preparando la instancia del componente NavbarComponent
+      con TestBed para que cada test tenga un ambiente controlado e aislado sin efectos secundarios reales
+    */
+
     await TestBed.configureTestingModule({
       imports: [
         NavbarComponent,

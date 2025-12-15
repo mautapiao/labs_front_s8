@@ -1,7 +1,4 @@
-// =========================================================
-// ARCHIVO: usuario.model.ts
 // Modelos relacionados con Usuario, Registro y Autenticación
-// =========================================================
 
 import { RolModel } from "./rol.model";
 

@@ -16,7 +16,7 @@ ejecute la actualización del registro mediante el servicio correspondiente.
 Asimismo, el test comprueba el comportamiento de las acciones de usuario, como la actualización 
 del paciente, el restablecimiento del formulario a su estado original y la navegación al cancelar 
 la edición, asegurando que la lógica del componente funcione de manera aislada mediante el uso 
-de servicios simulados.
+de servicios simulados
 */
 
   let componente: PacienteEditComponent;

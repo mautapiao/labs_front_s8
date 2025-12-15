@@ -36,6 +36,13 @@ describe('SolicitudService', () => {
   
   it('debería obtener todas las solicitudes', () => {
 
+    /*
+    _embedded es una convención del estándar HAL 
+    que encapsula recursos relacionados, permitiendo
+     que una API devuelva datos jerarquizados y
+      bien organizados sin necesidad de hacer múltiples peticiones al servidor
+      en resumen; es una propiedad que agrupa datos relacionados dentro de una respuesta API.
+    */
     const mockResponse = {
       _embedded: {
         solicitudList: [

@@ -161,7 +161,15 @@ describe('RegistroComponent', () => {
 
     component.onSubmit();
 
-    expect(Swal.fire).toHaveBeenCalled();
+    expect(Swal.fire)// espera/verifica la función
+    .toHaveBeenCalled(); // que haya sido llamada al menos una vez
   });
 
 });
+
+
+/*
+toHaveBeenCalled()              // fue llamada al menos 1 vez
+toHaveBeenCalledTimes(2)        // fue llamada exactamente 2 veces
+toHaveBeenCalledWith({...})     // fue llamada con estos argumentos
+*/

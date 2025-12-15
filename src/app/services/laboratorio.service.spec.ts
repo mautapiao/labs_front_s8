@@ -36,19 +36,15 @@ describe('LaboratorioService', () => {
     httpMock.verify();
   });
 
-  // --------------------------------------------------
   // creación del servicio
-  // --------------------------------------------------
   it('debería crearse el servicio', () => {
     expect(service).toBeTruthy();
   });
 
-  // --------------------------------------------------
   // getAll
-  // --------------------------------------------------
   it('debería obtener la lista de laboratorios', () => {
 
-    // simulo la respuesta HAL del backend
+    // simulo la respuesta del backend
     const mockResponse = {
       _embedded: {
         laboratorioList: [mockLaboratorio]
@@ -68,9 +64,7 @@ describe('LaboratorioService', () => {
     req.flush(mockResponse);
   });
 
-  // --------------------------------------------------
   // getById
-  // --------------------------------------------------
   it('debería obtener un laboratorio por id', () => {
 
     service.getById(1).subscribe(laboratorio => {
@@ -83,9 +77,7 @@ describe('LaboratorioService', () => {
     req.flush(mockLaboratorio);
   });
 
-  // --------------------------------------------------
   // create
-  // --------------------------------------------------
   it('debería crear un laboratorio', () => {
 
     const nuevoLaboratorio: Omit<Laboratorio, 'id'> = {
@@ -104,9 +96,7 @@ describe('LaboratorioService', () => {
     req.flush({ ...nuevoLaboratorio, id: 2 });
   });
 
-  // --------------------------------------------------
   // update
-  // --------------------------------------------------
   it('debería actualizar un laboratorio', () => {
 
     const cambios = {
@@ -124,9 +114,7 @@ describe('LaboratorioService', () => {
     req.flush({ ...mockLaboratorio, ...cambios });
   });
 
-  // --------------------------------------------------
   // delete
-  // --------------------------------------------------
   it('debería eliminar un laboratorio', () => {
 
     service.delete(1).subscribe(response => {
