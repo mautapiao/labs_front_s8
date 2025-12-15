@@ -1,0 +1,98 @@
+<div class="login-container">
+  <div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <div class="col-md-5">
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-5">
+            <!-- Logo -->
+            <div class="text-center mb-4">
+              <i class="bi bi-heart-pulse-fill text-primary fs-1"></i>
+              <h3 class="fw-bold mt-2">LabAnalytics</h3>
+              <p class="text-muted">Iniciar Sesión</p>
+            </div>
+
+            <!-- Alerta de error -->
+            <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              {{ errorMessage }}
+              <button type="button" class="btn-close" (click)="errorMessage = ''"></button>
+            </div>
+
+            <!-- Formulario -->
+            <form (ngSubmit)="onLogin()">
+              <div class="mb-3">
+                <label class="form-label fw-bold">Usuario</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    [(ngModel)]="username"
+                    name="username"
+                    placeholder="admin"
+                    required>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Contraseña</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                  <input 
+                    type="password" 
+                    class="form-control" 
+                    [(ngModel)]="password"
+                    name="password"
+                    placeholder="1234"
+                    required>
+                </div>
+              </div>
+
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="remember">
+                <label class="form-check-label" for="remember">
+                  Recordarme
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100 mb-3">
+                <i class="bi bi-box-arrow-in-right me-2"></i>
+                Iniciar Sesión
+              </button>
+
+              <div class="text-center">
+                <a routerLink="/recuperar-password" class="text-decoration-none">
+                  ¿Olvidaste tu contraseña?
+                </a>
+              </div>
+
+              <hr class="my-4">
+
+              <div class="text-center">
+                <p class="text-muted mb-2">¿No tienes cuenta?</p>
+                <a routerLink="/registro" class="btn btn-outline-secondary w-100">
+                  <i class="bi bi-person-plus me-2"></i>
+                  Crear Cuenta
+                </a>
+              </div>
+            </form>
+
+            <!-- Info de prueba -->
+            <div class="alert alert-info mt-4 mb-0">
+              <small>
+                <strong>Credenciales de prueba:</strong><br>
+                Usuario: <code>admin</code> | Contraseña: <code>1234</code>
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-3">
+         <a routerLink="/" class="text-white text-decoration-none">
+            <i class="bi bi-house-door me-2"></i>Volver al inicio
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

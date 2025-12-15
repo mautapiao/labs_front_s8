@@ -1,0 +1,124 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Encabezado -->
+            <div class="mb-4">
+                <h2 class="mb-2">🧍‍♂️ Crear</h2>
+                <p class="text-muted">Completa todos los campos para agregar un nuevo registro</p>
+            </div>
+
+           <!-- Formulario -->
+<form (ngSubmit)="guardar()" class="card shadow-sm p-4">
+
+    <!-- Email -->
+    <div class="mb-3">
+        <label for="email" class="form-label fw-semibold">Email *</label>
+        <input type="email" autocomplete="off" maxlength="100"
+            class="form-control" [class.is-invalid]="errores['email']"
+            id="email" [(ngModel)]="paciente.email" name="email"
+            placeholder="Ej: usuario@correo.com" required />
+        <div class="invalid-feedback d-block" *ngIf="errores['email']">
+            {{ errores['email'] }}
+        </div>
+    </div>
+
+    <!-- RUT -->
+    <div class="mb-3">
+        <label for="rut" class="form-label fw-semibold">RUT *</label>
+        <input type="text" maxlength="10" autocomplete="off"
+            class="form-control" [class.is-invalid]="errores['rut']"
+            id="rut" [(ngModel)]="paciente.rut" name="rut"
+            placeholder="Ej: 12345678" required />
+        <div class="invalid-feedback d-block" *ngIf="errores['rut']">
+            {{ errores['rut'] }}
+        </div>
+    </div>
+
+    <!-- DV -->
+    <div class="mb-3">
+        <label for="dv" class="form-label fw-semibold">Dígito Verificador *</label>
+        <input type="text" maxlength="1" autocomplete="off"
+            class="form-control" [class.is-invalid]="errores['dv']"
+            id="dv" [(ngModel)]="paciente.dv" name="dv"
+            placeholder="Ej: K" required />
+        <div class="invalid-feedback d-block" *ngIf="errores['dv']">
+            {{ errores['dv'] }}
+        </div>
+    </div>
+
+    <!-- Nombres -->
+    <div class="mb-3">
+        <label for="nombres" class="form-label fw-semibold">Nombres *</label>
+        <input type="text" maxlength="100" autocomplete="off"
+            class="form-control" [class.is-invalid]="errores['nombres']"
+            id="nombres" [(ngModel)]="paciente.nombres" name="nombres"
+            placeholder="Ej: Juan Carlos" required />
+        <div class="invalid-feedback d-block" *ngIf="errores['nombres']">
+            {{ errores['nombres'] }}
+        </div>
+    </div>
+
+    <!-- Apellido Paterno -->
+    <div class="mb-3">
+        <label for="paterno" class="form-label fw-semibold">Apellido Paterno *</label>
+        <input type="text" maxlength="50" autocomplete="off"
+            class="form-control" [class.is-invalid]="errores['paterno']"
+            id="paterno" [(ngModel)]="paciente.paterno" name="paterno"
+            placeholder="Ej: Pérez" required />
+        <div class="invalid-feedback d-block" *ngIf="errores['paterno']">
+            {{ errores['paterno'] }}
+        </div>
+    </div>
+
+    <!-- Apellido Materno -->
+    <div class="mb-3">
+        <label for="materno" class="form-label fw-semibold">Apellido Materno</label>
+        <input type="text" maxlength="50" autocomplete="off"
+            class="form-control" [class.is-invalid]="errores['materno']"
+            id="materno" [(ngModel)]="paciente.materno" name="materno"
+            placeholder="Ej: González" />
+        <div class="invalid-feedback d-block" *ngIf="errores['materno']">
+            {{ errores['materno'] }}
+        </div>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="mb-3">
+        <label for="telefono" class="form-label fw-semibold">Teléfono</label>
+        <input type="text" maxlength="15" autocomplete="off"
+            class="form-control" [class.is-invalid]="errores['telefono']"
+            id="telefono" [(ngModel)]="paciente.telefono" name="telefono"
+            placeholder="Ej: +56912345678" />
+        <div class="invalid-feedback d-block" *ngIf="errores['telefono']">
+            {{ errores['telefono'] }}
+        </div>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-success flex-grow-1" [disabled]="loading">
+            <span *ngIf="!loading">✅ Guardar</span>
+            <span *ngIf="loading">
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                Guardando...
+            </span>
+        </button>
+
+        <button type="button" class="btn btn-secondary" (click)="limpiar()" [disabled]="loading">
+            🔄 Limpiar
+        </button>
+
+        <button type="button" class="btn btn-outline-secondary" (click)="cancelar()" [disabled]="loading">
+            ❌ Cancelar
+        </button>
+    </div>
+</form>
+
+
+            <!-- Información adicional -->
+            <div class="alert alert-info mt-4" role="alert">
+                <strong>ℹ️ Nota:</strong> Los campos marcados con * son obligatorios. 
+            </div>
+        </div>
+    </div>
+</div>

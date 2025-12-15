@@ -1,0 +1,103 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <!-- Encabezado -->
+      <div class="mb-4">
+        <h2 class="mb-2">✏️ Editar</h2>
+        <p class="text-muted">Modifica los datos y guarda los cambios</p>
+      </div>
+
+      <!-- Indicador de carga -->
+      <div *ngIf="cargando" class="alert alert-info" role="alert">
+        <div class="spinner-border spinner-border-sm me-2" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        Cargando datos del registro...
+      </div>
+
+      <!-- Formulario (solo si termina de cargar) -->
+      <form *ngIf="!cargando" (ngSubmit)="guardar()" class="card shadow-sm p-4">
+        
+         <!-- Campo codigo  -->
+        <div class="mb-3">
+          <label for="codigo" class="form-label fw-semibold">Nombre Laboratorio *</label>
+          <input
+            type="text"
+            maxlength="25"
+            autocomplete="off"
+            class="form-control"
+            [class.is-invalid]="errores['codigo']"
+            id="codigo"
+            [(ngModel)]="tipoAnalisis.codigo"
+            name="codigo"
+            placeholder="Ej: A001"
+            required
+          />
+          <div class="invalid-feedback d-block" *ngIf="errores['codigo']">
+            {{ errores['codigo'] }}
+          </div>
+        </div>
+
+        <!-- Campo nombre -->
+        <div class="mb-3">
+          <label for="nombre" class="form-label fw-semibold">Nombre Tipo Análisis *</label>
+          <input
+            type="text"
+            autocomplete="off"
+            maxlength="100"
+            class="form-control"
+            [class.is-invalid]="errores['nombre']"
+            id="nombre"
+            [(ngModel)]="tipoAnalisis.nombre"
+            name="nombre"
+            placeholder="Ej: Tipo análisis"
+            required
+          />
+          <div class="invalid-feedback d-block" *ngIf="errores['nombre']">
+            {{ errores['nombre'] }}
+          </div>
+        </div>
+
+       
+
+        <!-- Botones de acción -->
+        <div class="d-flex gap-2">
+          <button
+            type="submit"
+            class="btn btn-primary flex-grow-1"
+            [disabled]="loading"
+          >
+            <span *ngIf="!loading">💾 Guardar Cambios</span>
+            <span *ngIf="loading">
+              <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Guardando...
+            </span>
+          </button>
+          
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="resetear()"
+            [disabled]="loading"
+          >
+            🔄 Revertir
+          </button>
+          
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            (click)="cancelar()"
+            [disabled]="loading"
+          >
+            ❌ Cancelar
+          </button>
+        </div>
+      </form>
+
+      <!-- Información adicional -->
+      <div class="alert alert-info mt-4" role="alert">
+        <strong>ℹ️ Nota:</strong> Los campos marcados con * son obligatorios.
+      </div>
+    </div>
+  </div>
+</div>

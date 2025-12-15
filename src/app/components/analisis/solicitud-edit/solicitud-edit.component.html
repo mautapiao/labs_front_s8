@@ -1,0 +1,232 @@
+<!-- solicitud-edit.component.html -->
+<div class="container mt-4">
+  <div class="card shadow">
+    
+    <!-- HEADER -->
+    <div class="card-header bg-warning text-dark">
+      <h3 class="mb-0">
+        <i class="bi bi-pencil-square"></i> Editar Solicitud
+        <span *ngIf="solicitud.id" class="badge bg-secondary ms-2">
+          ID: {{ solicitud.id }}
+        </span>
+      </h3>
+    </div>
+
+    <div class="card-body">
+      
+      <!-- ✅ SPINNER MIENTRAS CARGA -->
+      <div *ngIf="loadingData || loadingSolicitud" class="text-center py-5">
+        <div class="spinner-border text-warning" role="status">
+          <span class="visually-hidden">Cargando datos...</span>
+        </div>
+        <p class="mt-3">Cargando información de la solicitud...</p>
+      </div>
+
+      <!-- ✅ FORMULARIO -->
+      <form *ngIf="!loadingData && !loadingSolicitud" (ngSubmit)="actualizar()">
+        
+        <!-- FILA 1: Número de Atención y Fecha -->
+        <div class="row mb-3">
+          <!-- Número de Atención -->
+          <div class="col-md-6">
+            <label for="numeroAtencion" class="form-label">
+              Número de Atención <span class="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              [class.is-invalid]="errores['numeroAtencion']"
+              id="numeroAtencion"
+              name="numeroAtencion"
+              [(ngModel)]="solicitud.numeroAtencion"
+              placeholder="Ej: ATN-2025-001"
+              maxlength="50"
+            />
+            <div class="invalid-feedback" *ngIf="errores['numeroAtencion']">
+              {{ errores['numeroAtencion'] }}
+            </div>
+          </div>
+
+          <!-- Fecha de Solicitud -->
+          <div class="col-md-6">
+            <label for="fechaSolicitud" class="form-label">
+              Fecha de Solicitud <span class="text-danger">*</span>
+            </label>
+            <input
+              type="date"
+              class="form-control"
+              [class.is-invalid]="errores['fechaSolicitud']"
+              id="fechaSolicitud"
+              name="fechaSolicitud"
+              [(ngModel)]="solicitud.fechaSolicitud"
+            />
+            <div class="invalid-feedback" *ngIf="errores['fechaSolicitud']">
+              {{ errores['fechaSolicitud'] }}
+            </div>
+          </div>
+        </div>
+
+        <!-- FILA 2: Laboratorio -->
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <label for="laboratorio" class="form-label">
+              Laboratorio <span class="text-danger">*</span>
+            </label>
+            <select
+              class="form-select"
+              [class.is-invalid]="errores['laboratorio']"
+              id="laboratorio"
+              name="laboratorio"
+              [(ngModel)]="solicitud.laboratorio.id"
+            >
+              <option [ngValue]="0">-- Seleccione un laboratorio --</option>
+              <option 
+                *ngFor="let lab of laboratorios" 
+                [ngValue]="lab.id"
+              >
+                {{ lab.nombre }}
+              </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="errores['laboratorio']">
+              {{ errores['laboratorio'] }}
+            </div>
+          </div>
+        </div>
+
+        <!-- FILA 3: Paciente -->
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <label for="paciente" class="form-label">
+              Paciente <span class="text-danger">*</span>
+            </label>
+            <select
+              class="form-select"
+              [class.is-invalid]="errores['paciente']"
+              id="paciente"
+              name="paciente"
+              [(ngModel)]="solicitud.paciente.id"
+            >
+              <option [ngValue]="0">-- Seleccione un paciente --</option>
+              <option 
+                *ngFor="let pac of pacientes" 
+                [ngValue]="pac.id"
+              >
+                {{ getNombreCompletoPaciente(pac) }}
+              </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="errores['paciente']">
+              {{ errores['paciente'] }}
+            </div>
+          </div>
+        </div>
+
+        <!-- FILA 4: Tipo de Análisis -->
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <label for="tipoAnalisis" class="form-label">
+              Tipo de Análisis <span class="text-danger">*</span>
+            </label>
+            <select
+              class="form-select"
+              [class.is-invalid]="errores['tipoAnalisis']"
+              id="tipoAnalisis"
+              name="tipoAnalisis"
+              [(ngModel)]="solicitud.tipoAnalisis.id"
+            >
+              <option [ngValue]="0">-- Seleccione un tipo de análisis --</option>
+              <option 
+                *ngFor="let tipo of tiposAnalisis" 
+                [ngValue]="tipo.id"
+              >
+                {{ getTipoAnalisisDisplay(tipo) }}
+              </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="errores['tipoAnalisis']">
+              {{ errores['tipoAnalisis'] }}
+            </div>
+          </div>
+        </div>
+
+        <!-- FILA 5: Detalle del Examen -->
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <label for="detalleExamen" class="form-label">
+              Detalle del Examen <span class="text-danger">*</span>
+            </label>
+            <textarea
+              class="form-control"
+              [class.is-invalid]="errores['detalleExamen']"
+              id="detalleExamen"
+              name="detalleExamen"
+              [(ngModel)]="solicitud.detalleExamen"
+              rows="4"
+              placeholder="Describa los detalles del examen solicitado..."
+              maxlength="500"
+            ></textarea>
+            <div class="invalid-feedback" *ngIf="errores['detalleExamen']">
+              {{ errores['detalleExamen'] }}
+            </div>
+            <small class="form-text text-muted">
+              {{ solicitud.detalleExamen.length || 0 }} / 500 caracteres
+            </small>
+          </div>
+        </div>
+
+        <!-- INFORMACIÓN ADICIONAL (Solo lectura) -->
+        <div class="row mb-3" *ngIf="solicitud.id">
+          <div class="col-md-12">
+            <div class="alert alert-info">
+              <strong><i class="bi bi-info-circle"></i> Información:</strong>
+              <ul class="mb-0 mt-2">
+                <li>ID de Solicitud: <strong>{{ solicitud.id }}</strong></li>
+                <li>Creada: <strong>{{ solicitud.fechaSolicitud }}</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOTONES DE ACCIÓN -->
+        <div class="row mt-4">
+          <div class="col-md-12 d-flex justify-content-end gap-2">
+            
+            <!-- Botón Recargar -->
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              (click)="recargar()"
+              [disabled]="loading"
+            >
+              <i class="bi bi-arrow-clockwise"></i> Recargar
+            </button>
+
+            <!-- Botón Cancelar -->
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="cancelar()"
+              [disabled]="loading"
+            >
+              <i class="bi bi-x-circle"></i> Cancelar
+            </button>
+
+            <!-- Botón Actualizar -->
+            <button
+              type="submit"
+              class="btn btn-warning text-dark"
+              [disabled]="loading"
+            >
+              <span *ngIf="!loading">
+                <i class="bi bi-check-circle"></i> Actualizar Solicitud
+              </span>
+              <span *ngIf="loading">
+                <span class="spinner-border spinner-border-sm me-2"></span>
+                Actualizando...
+              </span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,253 @@
+<div class="registro-container">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-5">
+            <!-- Header -->
+            <div class="text-center mb-4">
+              <i class="bi bi-person-plus-fill text-primary fs-1"></i>
+              <h3 class="fw-bold mt-2">Crear Cuenta</h3>
+              <p class="text-muted">Completa el formulario para registrarte</p>
+            </div>
+
+            <!-- Formulario -->
+            <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+              <div class="row g-3">
+                
+                <!-- Email -->
+                <div class="col-md-12">
+                  <label class="form-label fw-bold">
+                    Correo Electrónico <span class="text-danger">*</span>
+                  </label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="bi bi-envelope-fill"></i>
+                    </span>
+                    <input 
+                      type="email" 
+                      class="form-control" 
+                      formControlName="email"
+                      placeholder="ejemplo@correo.com"
+                      [class.is-invalid]="hasError('email', 'required') || hasError('email', 'email')">
+                  </div>
+                  <div class="invalid-feedback d-block" *ngIf="f['email'].invalid && f['email'].touched">
+                    {{ getErrorMessage('email') }}
+                  </div>
+                </div>
+
+                <!-- RUT y DV -->
+                <div class="col-md-8">
+                  <label class="form-label fw-bold">
+                    RUT <span class="text-danger">*</span>
+                  </label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="bi bi-card-text"></i>
+                    </span>
+                    <input 
+                      type="text" 
+                      class="form-control" 
+                      formControlName="rut"
+                      placeholder="12345678"
+                      maxlength="8"
+                      (blur)="formatearRut()"
+                      [class.is-invalid]="f['rut'].invalid && f['rut'].touched">
+                  </div>
+                  <div class="invalid-feedback d-block" *ngIf="f['rut'].invalid && f['rut'].touched">
+                    {{ getErrorMessage('rut') }}
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label fw-bold">
+                    DV <span class="text-danger">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    class="form-control text-center text-uppercase" 
+                    formControlName="dv"
+                    placeholder="K"
+                    maxlength="1"
+                    [class.is-invalid]="f['dv'].invalid && f['dv'].touched">
+                  <div class="invalid-feedback d-block" *ngIf="f['dv'].invalid && f['dv'].touched">
+                    {{ getErrorMessage('dv') }}
+                  </div>
+                </div>
+
+                <!-- Nombre de Usuario -->
+                <div class="col-md-12">
+                  <label class="form-label fw-bold">
+                    Nombre de Usuario <span class="text-danger">*</span>
+                  </label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="bi bi-person-fill"></i>
+                    </span>
+                    <input 
+                      type="text" 
+                      class="form-control" 
+                      formControlName="nombreUsuario"
+                      placeholder="usuario123"
+                      [class.is-invalid]="f['nombreUsuario'].invalid && f['nombreUsuario'].touched">
+                  </div>
+                  <div class="invalid-feedback d-block" *ngIf="f['nombreUsuario'].invalid && f['nombreUsuario'].touched">
+                    {{ getErrorMessage('nombreUsuario') }}
+                  </div>
+                </div>
+
+                <!-- Nombres -->
+                <div class="col-md-12">
+                  <label class="form-label fw-bold">
+                    Nombres <span class="text-danger">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="nombres"
+                    placeholder="Juan Pablo"
+                    [class.is-invalid]="f['nombres'].invalid && f['nombres'].touched">
+                  <div class="invalid-feedback d-block" *ngIf="f['nombres'].invalid && f['nombres'].touched">
+                    {{ getErrorMessage('nombres') }}
+                  </div>
+                </div>
+
+                <!-- Apellido Paterno -->
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">
+                    Apellido Paterno <span class="text-danger">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="paterno"
+                    placeholder="González"
+                    [class.is-invalid]="f['paterno'].invalid && f['paterno'].touched">
+                  <div class="invalid-feedback d-block" *ngIf="f['paterno'].invalid && f['paterno'].touched">
+                    {{ getErrorMessage('paterno') }}
+                  </div>
+                </div>
+
+                <!-- Apellido Materno -->
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">
+                    Apellido Materno
+                  </label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="materno"
+                    placeholder="López">
+                </div>
+
+                <!-- Contraseña -->
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">
+                    Contraseña <span class="text-danger">*</span>
+                  </label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="bi bi-lock-fill"></i>
+                    </span>
+                    <input 
+                      [type]="mostrarPassword ? 'text' : 'password'" 
+                      class="form-control" 
+                      formControlName="password"
+                      placeholder="Mínimo 6 caracteres"
+                      [class.is-invalid]="f['password'].invalid && f['password'].touched">
+                    <button 
+                      class="btn btn-outline-secondary" 
+                      type="button"
+                      (click)="toggleMostrarPassword()">
+                      <i [class]="mostrarPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                    </button>
+                  </div>
+                  <div class="invalid-feedback d-block" *ngIf="f['password'].invalid && f['password'].touched">
+                    {{ getErrorMessage('password') }}
+                  </div>
+                </div>
+
+                <!-- Confirmar Contraseña -->
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">
+                    Confirmar Contraseña <span class="text-danger">*</span>
+                  </label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="bi bi-lock-fill"></i>
+                    </span>
+                    <input 
+                      [type]="mostrarConfirmarPassword ? 'text' : 'password'" 
+                      class="form-control" 
+                      formControlName="confirmarPassword"
+                      placeholder="Repite la contraseña"
+                      [class.is-invalid]="(f['confirmarPassword'].invalid && f['confirmarPassword'].touched) || getPasswordMatchError()">
+                    <button 
+                      class="btn btn-outline-secondary" 
+                      type="button"
+                      (click)="toggleMostrarConfirmarPassword()">
+                      <i [class]="mostrarConfirmarPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                    </button>
+                  </div>
+                  <div class="invalid-feedback d-block" *ngIf="getPasswordMatchError()">
+                    {{ getPasswordMatchError() }}
+                  </div>
+                </div>
+
+                <!-- Términos y Condiciones -->
+                <div class="col-12">
+                  <div class="form-check">
+                    <input 
+                      class="form-check-input" 
+                      type="checkbox" 
+                      formControlName="aceptarTerminos"
+                      id="terminos">
+                    <label class="form-check-label" for="terminos">
+                     <!-- Acepto los <a href="#" class="text-primary">términos y condiciones</a> <span class="text-danger">*</span>-->
+                         Acepto los términos y condiciones <span class="text-danger">*</span>
+                   
+                    </label>
+                  </div>
+                  <div class="text-danger small" *ngIf="f['aceptarTerminos'].invalid && f['aceptarTerminos'].touched">
+                    Debes aceptar los términos y condiciones
+                  </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="col-12">
+                  <button 
+                    type="submit" 
+                    class="btn btn-primary w-100 mb-3"
+                    [disabled]="isSubmitting">
+                    <span *ngIf="!isSubmitting">
+                      <i class="bi bi-person-plus-fill me-2"></i> Registrar
+                    </span>
+                    <span *ngIf="isSubmitting">
+                      <span class="spinner-border spinner-border-sm me-2"></span>
+                      Registrando...
+                    </span>
+                  </button>
+
+                  <div class="text-center">
+                    <p class="text-muted mb-2">¿Ya tienes cuenta?</p>
+                    <a routerLink="/login" class="btn btn-outline-secondary w-100">
+                      <i class="bi bi-box-arrow-in-right me-2"></i> Iniciar Sesión
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <!-- Volver al inicio -->
+            <div class="text-center mt-4">
+              <a routerLink="/" class="text-white text-decoration-none">
+                <i class="bi bi-house-door me-2"></i>Volver al inicio
+              </a>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>

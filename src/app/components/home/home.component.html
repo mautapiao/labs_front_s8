@@ -1,0 +1,92 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-primary" routerLink="/">
+      <i class="bi bi-heart-pulse-fill me-2"></i>LabAnalytics
+    </a>
+    
+    <div class="ms-auto d-flex gap-2">
+      <a routerLink="/login" class="btn btn-outline-primary btn-sm">
+        <i class="bi bi-box-arrow-in-right me-1"></i> Login
+      </a>
+      <a routerLink="/registro" class="btn btn-primary btn-sm">
+        <i class="bi bi-person-plus me-1"></i> Registro
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center min-vh-100">
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold mb-4">
+          Sistema de Gestión de <span class="text-primary">Análisis Clínicos</span>
+        </h1>
+        <p class="lead text-muted mb-4">
+          Plataforma para gestionar envío de muestras, análisis y consulta de resultados entre clínicas y laboratorios.
+        </p>
+        <div class="d-flex gap-3">
+          <a routerLink="/registro" class="btn btn-primary btn-lg">Comenzar</a>
+          <a routerLink="/login" class="btn btn-outline-secondary btn-lg">Iniciar Sesión</a>
+        </div>
+      </div>
+      
+      <div class="col-lg-6">
+        <div class="card shadow-lg border-0 p-4">
+          <i class="bi bi-clipboard2-pulse text-primary display-1 text-center mb-3"></i>
+          <h5 class="text-center">Acceso Rápido</h5>
+          <div class="d-grid gap-2">
+            <a routerLink="/login" class="btn btn-outline-primary">
+              <i class="bi bi-box-arrow-in-right me-2"></i> Iniciar Sesión
+            </a>
+            <a routerLink="/recuperar-password" class="btn btn-link text-muted">
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Servicios -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5">Nuestros Servicios</h2>
+    
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm text-center p-4">
+          <i class="bi bi-send-check-fill text-primary fs-1 mb-3"></i>
+          <h5 class="fw-bold">Envío de Muestras</h5>
+          <p class="text-muted">Registro digital con código único y trazabilidad completa.</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm text-center p-4">
+          <i class="bi bi-cpu-fill text-success fs-1 mb-3"></i>
+          <h5 class="fw-bold">Análisis Automatizado</h5>
+          <p class="text-muted">Procesamiento con equipos de última generación.</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm text-center p-4">
+          <i class="bi bi-graph-up-arrow text-info fs-1 mb-3"></i>
+          <h5 class="fw-bold">Consulta de Resultados</h5>
+          <p class="text-muted">Acceso inmediato a resultados e historial del paciente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4">
+  <div class="container text-center">
+    <p class="mb-0">&copy; 2025 LabAnalytics - Sistema de Análisis Clínicos</p>
+  </div>
+</footer>

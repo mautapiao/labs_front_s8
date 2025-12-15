@@ -1,0 +1,61 @@
+// Paleta de colores profesional para laboratorio clínico
+$primary: #0d6efd;       // Azul confianza
+$secondary: #6c757d;     // Gris neutro
+$success: #198754;       // Verde salud
+$info: #0dcaf0;          // Cyan tecnología
+$warning: #ffc107;       // Amarillo atención
+$danger: #dc3545;        // Rojo urgencia
+$light: #f8f9fa;         // Fondo claro
+$dark: #212529;          // Texto oscuro
+
+// Sobrescribir variables de Bootstrap
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark
+);
+
+// Tipografía profesional
+$font-family-sans-serif: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$headings-font-weight: 600;
+
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+// Estilos globales personalizados
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family-sans-serif;
+  color: $dark;
+  background-color: $light;
+}
+
+// Animaciones suaves
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// Botones con efecto hover
+.btn {
+  transition: all 0.3s ease;
+  font-weight: 500;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+}
